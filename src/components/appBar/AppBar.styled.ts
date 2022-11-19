@@ -9,7 +9,7 @@ export const AppBarContainer = styled.aside`
 export const AppBarHeading = styled.div`
   display: flex;
   align-items: center;
-  height: 55px;
+  height: 56px;
   background-color: #111827;
   padding: 0 12px;
 `;

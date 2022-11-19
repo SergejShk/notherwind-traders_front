@@ -6,8 +6,12 @@ export const HeaderStyled = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 17px 17px 17px 13px;
+  padding: 17px 17px 18px 13px;
   border-bottom: 1px solid #f3f4f6;
+
+  @media screen and (min-width: 1024px) {
+    padding: 18px 12px 17px 36px;
+  }
 `;
 
 export const BtnBurger = styled.button`

@@ -11,10 +11,18 @@ export const MainWrapper = styled.div`
   &.isOpen {
     transform: translateX(240px);
   }
+
+  @media screen and (min-width: 1024px) {
+    position: static;
+  }
 `;
 
 export const Wrapper = styled.div`
   width: 100vw;
   display: flex;
   flex-direction: column;
+
+  @media screen and (min-width: 1024px) {
+    width: calc(100vw - 240px);
+  }
 `;
