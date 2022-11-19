@@ -26,3 +26,9 @@ export const Wrapper = styled.div`
     width: calc(100vw - 240px);
   }
 `;
+
+export const WrapperContent = styled.div`
+  min-height: 100%;
+  background-color: #f9fafb;
+  padding: 24px;
+`;

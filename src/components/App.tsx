@@ -6,6 +6,7 @@ import HomePage from "../pages/HomePage";
 import OrdersPage from "../pages/OrdersPage";
 import ProductsPage from "../pages/ProductsPage";
 import SearchPage from "../pages/SearchPage";
+import SupplierInfoPage from "../pages/SupplierInfoPage";
 import SuppliersPage from "../pages/SuppliersPage";
 import SharedLayout from "./sharedLayout/SharedLayout";
 
@@ -17,6 +18,7 @@ const App: React.FC = () => {
           <Route path="/" index element={<HomePage />} />
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="suppliers" element={<SuppliersPage />} />
+          <Route path="suppliers/:supplierId" element={<SupplierInfoPage />} />
           <Route path="products" element={<ProductsPage />} />
           <Route path="orders" element={<OrdersPage />} />
           <Route path="employees" element={<EmployeesPage />} />

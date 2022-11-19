@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import SuppliersCardsList from "../components/suppliersCardsList/SuppliersCardsList";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { getAllSuppliersThunk } from "../redux/suppliers/suppliersOperations";
 import { getAllSuppliersStore } from "../redux/suppliers/suppliersSelectors";
@@ -13,7 +14,7 @@ const SuppliersPage: React.FC = () => {
     dispatch(getAllSuppliersThunk({ page }));
   }, [dispatch, page]);
 
-  return <>Suppliers Page</>;
+  return <>{allSuppliers && <SuppliersCardsList data={allSuppliers} />}</>;
 };
 
 export default SuppliersPage;
