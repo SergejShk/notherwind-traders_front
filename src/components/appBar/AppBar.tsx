@@ -1,4 +1,3 @@
-import AppBarList from "../shared/AppBarList";
 import {
   AppBarAccentTitle,
   AppBarContainer,
@@ -6,6 +5,7 @@ import {
   AppBarTitle,
 } from "./AppBar.styled";
 import { AppBarBackoffice, AppBarGeneral } from "../../utils/appBarContent";
+import AppBarList from "../shared/appBarList/AppBarList";
 
 const AppBar: React.FC = () => {
   return (

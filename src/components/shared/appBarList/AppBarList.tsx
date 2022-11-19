@@ -6,7 +6,7 @@ import {
   ItemName,
   NavItem,
 } from "./AppBarList.styled";
-import sprite from "../../assets/sprite.svg";
+import sprite from "../../../assets/sprite.svg";
 
 interface Item {
   icon: string;
