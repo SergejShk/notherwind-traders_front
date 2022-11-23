@@ -27,9 +27,14 @@ export const IconArrow = styled.svg`
 export const CardsListSupplier = styled.ul``;
 
 export const CardsItemSupplier = styled.li`
-  margin-bottom: 4px;
   box-shadow: 0px 1px 1px rgb(0 0 0 / 0%), 0px 4px 4px rgb(0 0 0 / 6%),
     1px 4px 6px rgb(0 0 0 / 0%);
+
+  &:not(:last-child) {
+    margin-bottom: 4px;
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 0%), 0px 4px 4px rgb(0 0 0 / 6%),
+      1px 4px 6px rgb(0 0 0 / 0%);
+  }
 `;
 
 export const CardContentList = styled.ul``;

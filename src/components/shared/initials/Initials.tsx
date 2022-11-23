@@ -13,8 +13,6 @@ const Initials: React.FC<IProps> = ({ fullName }) => {
   const firstLitter = fullName[0];
   const secondLitter = arrInitials[arrInitials.length - 1][0];
 
-  console.log(fullName, firstLitter, secondLitter);
-
   return (
     <InitialsStyled style={{ backgroundColor: getRandomHexColor() }}>
       {firstLitter}
