@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const BarTiltle = styled.p`
+  width: 216px;
   font-weight: 400px;
   font-size: 12px;
   line-height: 16px;

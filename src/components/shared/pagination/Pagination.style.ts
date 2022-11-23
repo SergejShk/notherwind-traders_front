@@ -17,6 +17,7 @@ export const WrapperPaginate = styled.div`
     padding: 8px 16px;
     border: 2px solid #f9fafb;
     border-radius: 0.25px;
+    cursor: pointer;
 
     &:not(:last-child) {
       margin-right: 4px;
@@ -29,6 +30,10 @@ export const WrapperPaginate = styled.div`
 `;
 
 export const PageDescr = styled.p`
-  width: 100px;
+  font-size: 12px;
+  line-height: 24px;
+  color: #000000;
+  width: 80px;
   margin-left: auto;
+  text-align: end;
 `;

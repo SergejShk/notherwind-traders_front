@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 import Pagination from "../components/shared/pagination/Pagination";
 import SuppliersCardsList from "../components/suppliersCardsList/SuppliersCardsList";
+import SuppliersTable from "../components/suppliersTable/SuppliersTable";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { getAllSuppliersThunk } from "../redux/suppliers/suppliersOperations";
 import {
@@ -13,18 +15,23 @@ const SuppliersPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const allSuppliers = useAppSelector(getAllSuppliersStore);
   const countSuppliers = useAppSelector(getCountSuppliersStore);
-  console.log(countSuppliers, allSuppliers);
+  console.log(allSuppliers);
+  const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 
   useEffect(() => {
     dispatch(getAllSuppliersThunk({ page }));
   }, [dispatch, page]);
 
-  return allSuppliers.length > 0 ? (
+  if (allSuppliers.length < 0) return null;
+
+  return isDesktop ? (
+    <SuppliersTable data={allSuppliers} />
+  ) : (
     <>
       <SuppliersCardsList data={allSuppliers} />
       <Pagination countData={countSuppliers} setPage={setPage} />
     </>
-  ) : null;
+  );
 };
 
 export default SuppliersPage;

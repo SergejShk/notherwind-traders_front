@@ -4,15 +4,13 @@ import {
   CardContentList,
   CardsItemSupplier,
   CardsListSupplier,
-  CardTitle,
-  CardTitleBox,
   Content,
   ContentName,
-  IconArrow,
-  SupplierLink,
 } from "./SuppliersCardsList.style";
-import sprite from "../../assets/sprite.svg";
+
 import Initials from "../shared/initials/Initials";
+import DataTitle from "../shared/DataTitle";
+import DataLink from "../shared/DataLink";
 
 interface IProps {
   data: SupplierType[];
@@ -21,12 +19,7 @@ interface IProps {
 const SuppliersCardsList: React.FC<IProps> = ({ data }) => {
   return (
     <>
-      <CardTitleBox>
-        <CardTitle>Suppliers</CardTitle>
-        <IconArrow>
-          <use href={sprite + "#icon-rotate-right"} />
-        </IconArrow>
-      </CardTitleBox>
+      <DataTitle>Suppliers</DataTitle>
 
       <CardsListSupplier>
         {data.map((supplier) => (
@@ -45,9 +38,10 @@ const SuppliersCardsList: React.FC<IProps> = ({ data }) => {
                   }}
                 >
                   <ContentName>Company</ContentName>
-                  <SupplierLink to={supplier.SupplierID}>
+
+                  <DataLink linkTo={supplier.SupplierID}>
                     {supplier.CompanyName}
-                  </SupplierLink>
+                  </DataLink>
                 </div>
               </CardContentItem>
 

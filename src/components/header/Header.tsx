@@ -1,7 +1,7 @@
 import { BtnBurger, HeaderStyled, IconBurger, IconDots } from "./Header.styled";
-import sprite from "../../assets/sprite.svg";
 import { useMediaQuery } from "react-responsive";
 import Clock from "../shared/clock/Clock";
+import sprite from "../../assets/sprite.svg";
 
 interface IProps {
   toggleAppBar: () => void;

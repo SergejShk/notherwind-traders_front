@@ -11,4 +11,11 @@ export const InitialsStyled = styled.span`
   font-size: 48px;
   line-height: 1.2;
   margin-bottom: 24px;
+
+  @media screen and (min-width: 1024px) {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+    margin-bottom: 0;
+  }
 `;
