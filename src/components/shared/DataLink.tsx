@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 export const LinkData = styled(Link)`
@@ -15,7 +15,13 @@ interface IProps {
 }
 
 const DataLink: React.FC<IProps> = ({ children, linkTo }) => {
-  return <LinkData to={linkTo}>{children}</LinkData>;
+  const location = useLocation();
+
+  return (
+    <LinkData to={linkTo} state={{ form: location }}>
+      {children}
+    </LinkData>
+  );
 };
 
 export default DataLink;

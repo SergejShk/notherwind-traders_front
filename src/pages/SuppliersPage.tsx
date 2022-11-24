@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
+import DataTitle from "../components/shared/DataTitle";
 import Pagination from "../components/shared/pagination/Pagination";
 import SuppliersCardsList from "../components/suppliersCardsList/SuppliersCardsList";
 import SuppliersTable from "../components/suppliersTable/SuppliersTable";
@@ -15,7 +16,6 @@ const SuppliersPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const allSuppliers = useAppSelector(getAllSuppliersStore);
   const countSuppliers = useAppSelector(getCountSuppliersStore);
-  console.log(allSuppliers);
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 
   useEffect(() => {
@@ -24,11 +24,16 @@ const SuppliersPage: React.FC = () => {
 
   if (allSuppliers.length < 0) return null;
 
-  return isDesktop ? (
-    <SuppliersTable data={allSuppliers} />
-  ) : (
+  return (
     <>
-      <SuppliersCardsList data={allSuppliers} />
+      <DataTitle>Suppliers</DataTitle>
+
+      {isDesktop ? (
+        <SuppliersTable data={allSuppliers} />
+      ) : (
+        <SuppliersCardsList data={allSuppliers} />
+      )}
+
       <Pagination countData={countSuppliers} setPage={setPage} />
     </>
   );

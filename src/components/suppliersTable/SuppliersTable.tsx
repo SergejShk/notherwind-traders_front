@@ -7,7 +7,6 @@ import {
   TableHeader,
   TableStyled,
 } from "../shared/DataTable";
-import DataTitle from "../shared/DataTitle";
 import Initials from "../shared/initials/Initials";
 
 interface IProps {
@@ -16,42 +15,39 @@ interface IProps {
 
 const SuppliersTable: React.FC<IProps> = ({ data }) => {
   return (
-    <>
-      <DataTitle>Suppliers</DataTitle>
+    <TableStyled>
+      <TableHead>
+        <tr>
+          <TableHeader></TableHeader>
+          <TableHeader>Company</TableHeader>
+          <TableHeader>Contact</TableHeader>
+          <TableHeader>Title</TableHeader>
+          <TableHeader>City</TableHeader>
+          <TableHeader>Country</TableHeader>
+        </tr>
+      </TableHead>
 
-      <TableStyled>
-        <TableHead>
-          <tr>
-            <TableHeader></TableHeader>
-            <TableHeader>Company</TableHeader>
-            <TableHeader>Contact</TableHeader>
-            <TableHeader>Title</TableHeader>
-            <TableHeader>City</TableHeader>
-            <TableHeader>Country</TableHeader>
-          </tr>
-        </TableHead>
-        <tbody>
-          {data.map((supplier) => (
-            <TableBodyRow key={supplier.SupplierID}>
-              <TableData>
-                <Initials fullName={supplier.ContactName} />
-              </TableData>
+      <tbody>
+        {data.map((supplier) => (
+          <TableBodyRow key={supplier.SupplierID}>
+            <TableData>
+              <Initials fullName={supplier.ContactName} />
+            </TableData>
 
-              <TableData>
-                <DataLink linkTo={supplier.SupplierID}>
-                  {supplier.CompanyName}
-                </DataLink>
-              </TableData>
+            <TableData>
+              <DataLink linkTo={supplier.SupplierID}>
+                {supplier.CompanyName}
+              </DataLink>
+            </TableData>
 
-              <TableData>{supplier.ContactName}</TableData>
-              <TableData>{supplier.ContactTitle}</TableData>
-              <TableData>{supplier.City}</TableData>
-              <TableData>{supplier.Country}</TableData>
-            </TableBodyRow>
-          ))}
-        </tbody>
-      </TableStyled>
-    </>
+            <TableData>{supplier.ContactName}</TableData>
+            <TableData>{supplier.ContactTitle}</TableData>
+            <TableData>{supplier.City}</TableData>
+            <TableData>{supplier.Country}</TableData>
+          </TableBodyRow>
+        ))}
+      </tbody>
+    </TableStyled>
   );
 };
 
