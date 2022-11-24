@@ -1,14 +1,14 @@
 import { SupplierType } from "../../types/suppliersTypes";
 import DataLink from "../shared/DataLink";
+import {
+  TableBodyRow,
+  TableData,
+  TableHead,
+  TableHeader,
+  TableStyled,
+} from "../shared/DataTable";
 import DataTitle from "../shared/DataTitle";
 import Initials from "../shared/initials/Initials";
-import {
-  SuppliersTableStyled,
-  SuppliersTableHead,
-  SuppliersTableHeader,
-  SuppliersTableBodyRow,
-  SuppliersTableData,
-} from "./SuppliersTable.style";
 
 interface IProps {
   data: SupplierType[];
@@ -19,38 +19,38 @@ const SuppliersTable: React.FC<IProps> = ({ data }) => {
     <>
       <DataTitle>Suppliers</DataTitle>
 
-      <SuppliersTableStyled>
-        <SuppliersTableHead>
+      <TableStyled>
+        <TableHead>
           <tr>
-            <SuppliersTableHeader></SuppliersTableHeader>
-            <SuppliersTableHeader>Company</SuppliersTableHeader>
-            <SuppliersTableHeader>Contact</SuppliersTableHeader>
-            <SuppliersTableHeader>Title</SuppliersTableHeader>
-            <SuppliersTableHeader>City</SuppliersTableHeader>
-            <SuppliersTableHeader>Country</SuppliersTableHeader>
+            <TableHeader></TableHeader>
+            <TableHeader>Company</TableHeader>
+            <TableHeader>Contact</TableHeader>
+            <TableHeader>Title</TableHeader>
+            <TableHeader>City</TableHeader>
+            <TableHeader>Country</TableHeader>
           </tr>
-        </SuppliersTableHead>
+        </TableHead>
         <tbody>
           {data.map((supplier) => (
-            <SuppliersTableBodyRow key={supplier.SupplierID}>
-              <SuppliersTableData>
+            <TableBodyRow key={supplier.SupplierID}>
+              <TableData>
                 <Initials fullName={supplier.ContactName} />
-              </SuppliersTableData>
+              </TableData>
 
-              <SuppliersTableData>
+              <TableData>
                 <DataLink linkTo={supplier.SupplierID}>
                   {supplier.CompanyName}
                 </DataLink>
-              </SuppliersTableData>
+              </TableData>
 
-              <SuppliersTableData>{supplier.ContactName}</SuppliersTableData>
-              <SuppliersTableData>{supplier.ContactTitle}</SuppliersTableData>
-              <SuppliersTableData>{supplier.City}</SuppliersTableData>
-              <SuppliersTableData>{supplier.Country}</SuppliersTableData>
-            </SuppliersTableBodyRow>
+              <TableData>{supplier.ContactName}</TableData>
+              <TableData>{supplier.ContactTitle}</TableData>
+              <TableData>{supplier.City}</TableData>
+              <TableData>{supplier.Country}</TableData>
+            </TableBodyRow>
           ))}
         </tbody>
-      </SuppliersTableStyled>
+      </TableStyled>
     </>
   );
 };

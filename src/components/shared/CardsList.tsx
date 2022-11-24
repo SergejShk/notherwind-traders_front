@@ -1,9 +1,6 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const CardsListSupplier = styled.ul``;
-
-export const CardsItemSupplier = styled.li`
+export const CardsItem = styled.li`
   box-shadow: 0px 1px 1px rgb(0 0 0 / 0%), 0px 4px 4px rgb(0 0 0 / 6%),
     1px 4px 6px rgb(0 0 0 / 0%);
 
@@ -13,8 +10,6 @@ export const CardsItemSupplier = styled.li`
       1px 4px 6px rgb(0 0 0 / 0%);
   }
 `;
-
-export const CardContentList = styled.ul``;
 
 export const CardContentItem = styled.li`
   min-height: 48px;
@@ -31,14 +26,14 @@ export const CardContentItem = styled.li`
   }
 `;
 
-export const ContentName = styled.p`
+export const CardContentName = styled.p`
   font-size: 16px;
   line-height: 24px;
   font-weight: 500;
   margin-right: 27px;
 `;
 
-export const Content = styled.p`
+export const CardContent = styled.p`
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;

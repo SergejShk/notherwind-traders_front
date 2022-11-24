@@ -1,16 +1,13 @@
 import { SupplierType } from "../../types/suppliersTypes";
-import {
-  CardContentItem,
-  CardContentList,
-  CardsItemSupplier,
-  CardsListSupplier,
-  Content,
-  ContentName,
-} from "./SuppliersCardsList.style";
-
 import Initials from "../shared/initials/Initials";
 import DataTitle from "../shared/DataTitle";
 import DataLink from "../shared/DataLink";
+import {
+  CardContent,
+  CardContentItem,
+  CardContentName,
+  CardsItem,
+} from "../shared/CardsList";
 
 interface IProps {
   data: SupplierType[];
@@ -21,10 +18,10 @@ const SuppliersCardsList: React.FC<IProps> = ({ data }) => {
     <>
       <DataTitle>Suppliers</DataTitle>
 
-      <CardsListSupplier>
+      <ul>
         {data.map((supplier) => (
-          <CardsItemSupplier key={supplier.SupplierID}>
-            <CardContentList>
+          <CardsItem key={supplier.SupplierID}>
+            <ul>
               <CardContentItem
                 style={{ flexDirection: "column", padding: "12px 0" }}
               >
@@ -37,7 +34,7 @@ const SuppliersCardsList: React.FC<IProps> = ({ data }) => {
                     width: "calc(100% - 32px)",
                   }}
                 >
-                  <ContentName>Company</ContentName>
+                  <CardContentName>Company</CardContentName>
 
                   <DataLink linkTo={supplier.SupplierID}>
                     {supplier.CompanyName}
@@ -46,28 +43,28 @@ const SuppliersCardsList: React.FC<IProps> = ({ data }) => {
               </CardContentItem>
 
               <CardContentItem>
-                <ContentName>Contact</ContentName>
-                <Content>{supplier.ContactName}</Content>
+                <CardContentName>Contact</CardContentName>
+                <CardContent>{supplier.ContactName}</CardContent>
               </CardContentItem>
 
               <CardContentItem>
-                <ContentName>Title</ContentName>
-                <Content>{supplier.ContactTitle}</Content>
+                <CardContentName>Title</CardContentName>
+                <CardContent>{supplier.ContactTitle}</CardContent>
               </CardContentItem>
 
               <CardContentItem>
-                <ContentName>City</ContentName>
-                <Content>{supplier.City}</Content>
+                <CardContentName>City</CardContentName>
+                <CardContent>{supplier.City}</CardContent>
               </CardContentItem>
 
               <CardContentItem>
-                <ContentName>Country</ContentName>
-                <Content>{supplier.Country}</Content>
+                <CardContentName>Country</CardContentName>
+                <CardContent>{supplier.Country}</CardContent>
               </CardContentItem>
-            </CardContentList>
-          </CardsItemSupplier>
+            </ul>
+          </CardsItem>
         ))}
-      </CardsListSupplier>
+      </ul>
     </>
   );
 };
