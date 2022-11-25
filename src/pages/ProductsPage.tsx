@@ -16,11 +16,10 @@ const ProductsPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const allProducts = useAppSelector(getAllProductsStore);
   const countProducts = useAppSelector(getCountProductsStore);
-  console.log(allProducts);
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 
   useEffect(() => {
-    dispatch(getAllProductsThunk({ page }));
+    dispatch(getAllProductsThunk({ category: "products", page }));
   }, [dispatch, page]);
 
   if (allProducts.length < 0) return null;

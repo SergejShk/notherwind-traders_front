@@ -1,7 +1,3 @@
-export type QueryProducts = {
-  page: number;
-};
-
 export type ProductType = {
   ProductID: string;
   ProductName: string;

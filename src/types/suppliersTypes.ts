@@ -1,7 +1,3 @@
-export type QuerySuppliers = {
-  page: number;
-};
-
 export type SupplierType = {
   Address: string;
   City: string;

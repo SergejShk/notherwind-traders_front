@@ -19,7 +19,7 @@ const SuppliersPage: React.FC = () => {
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 
   useEffect(() => {
-    dispatch(getAllSuppliersThunk({ page }));
+    dispatch(getAllSuppliersThunk({ category: "suppliers", page }));
   }, [dispatch, page]);
 
   if (allSuppliers.length < 0) return null;

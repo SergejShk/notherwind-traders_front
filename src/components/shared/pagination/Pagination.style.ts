@@ -11,10 +11,10 @@ export const WrapperPaginate = styled.div`
 
   & .containerPaginate {
     display: flex;
+    flex-wrap: wrap;
   }
 
   & .pageItem {
-    padding: 8px 16px;
     border: 2px solid #f9fafb;
     border-radius: 0.25px;
     cursor: pointer;
@@ -24,8 +24,23 @@ export const WrapperPaginate = styled.div`
     }
   }
 
+  & .link {
+    display: block;
+    padding: 8px 16px;
+  }
+
   & .activePage {
     border: 2px solid #d1d5db;
+  }
+
+  & .break {
+    margin-right: 4px;
+
+    & a {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
   }
 `;
 

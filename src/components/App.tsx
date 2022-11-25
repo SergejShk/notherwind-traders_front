@@ -3,6 +3,7 @@ import CustomersPage from "../pages/CustomersPage";
 import DashboardPage from "../pages/DashboardPage";
 import EmployeesPage from "../pages/EmployeesPage";
 import HomePage from "../pages/HomePage";
+import OrderInfoPage from "../pages/OrderInfoPage";
 import OrdersPage from "../pages/OrdersPage";
 import ProductInfoPage from "../pages/ProductInfoPage";
 import ProductsPage from "../pages/ProductsPage";
@@ -23,6 +24,7 @@ const App: React.FC = () => {
           <Route path="products" element={<ProductsPage />} />
           <Route path="products/:productId" element={<ProductInfoPage />} />
           <Route path="orders" element={<OrdersPage />} />
+          <Route path="orders/:orderId" element={<OrderInfoPage />} />
           <Route path="employees" element={<EmployeesPage />} />
           <Route path="customers" element={<CustomersPage />} />
           <Route path="search" element={<SearchPage />} />

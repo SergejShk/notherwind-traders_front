@@ -25,11 +25,12 @@ const Pagination: React.FC<IProps> = ({ countData, setPage }) => {
         breakLabel="..."
         onPageChange={handlePageClick}
         pageCount={pageCount}
-        pageRangeDisplayed={5}
+        pageRangeDisplayed={7}
         previousLabel=""
         nextLabel=""
         containerClassName="containerPaginate"
         pageClassName="pageItem"
+        pageLinkClassName="link"
         activeClassName="activePage"
       />
 

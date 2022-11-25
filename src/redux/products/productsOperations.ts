@@ -1,14 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getAllProducts } from "../../services/productsApi";
-import { AllProductsType, QueryProducts } from "./../../types/productsTypes";
+import { getAllDataByCategory } from "../../services/dataApi";
+import { QueryAllDataByCategoryType } from "../../types/queryTypes";
+import { AllProductsType } from "./../../types/productsTypes";
 
 export const getAllProductsThunk = createAsyncThunk<
   AllProductsType,
-  QueryProducts,
+  QueryAllDataByCategoryType,
   { rejectValue: string }
->("products/getAll", async (query, { rejectWithValue }) => {
+>("products/getAll", async ({ category, page }, { rejectWithValue }) => {
   try {
-    const data = await getAllProducts(query);
+    const data = await getAllDataByCategory({ category, page });
 
     return data;
   } catch (error: any) {
