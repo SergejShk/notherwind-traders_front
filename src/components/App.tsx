@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import CustomersPage from "../pages/CustomersPage";
 import DashboardPage from "../pages/DashboardPage";
+import EmployeesInfoPage from "../pages/EmployeesInfoPage";
 import EmployeesPage from "../pages/EmployeesPage";
 import HomePage from "../pages/HomePage";
 import OrderInfoPage from "../pages/OrderInfoPage";
@@ -26,6 +27,7 @@ const App: React.FC = () => {
           <Route path="orders" element={<OrdersPage />} />
           <Route path="orders/:orderId" element={<OrderInfoPage />} />
           <Route path="employees" element={<EmployeesPage />} />
+          <Route path="employees/:employeeId" element={<EmployeesInfoPage />} />
           <Route path="customers" element={<CustomersPage />} />
           <Route path="search" element={<SearchPage />} />
         </Route>

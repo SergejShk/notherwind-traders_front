@@ -21,18 +21,20 @@ const Pagination: React.FC<IProps> = ({ countData, setPage }) => {
 
   return (
     <WrapperPaginate>
-      <ReactPaginate
-        breakLabel="..."
-        onPageChange={handlePageClick}
-        pageCount={pageCount}
-        pageRangeDisplayed={7}
-        previousLabel=""
-        nextLabel=""
-        containerClassName="containerPaginate"
-        pageClassName="pageItem"
-        pageLinkClassName="link"
-        activeClassName="activePage"
-      />
+      {pageCount > 1 && (
+        <ReactPaginate
+          breakLabel="..."
+          onPageChange={handlePageClick}
+          pageCount={pageCount}
+          pageRangeDisplayed={7}
+          previousLabel=""
+          nextLabel=""
+          containerClassName="containerPaginate"
+          pageClassName="pageItem"
+          pageLinkClassName="link"
+          activeClassName="activePage"
+        />
+      )}
 
       <PageDescr>
         Page {activePage} of {pageCount}
