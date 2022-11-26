@@ -26,7 +26,7 @@ const EmployeesPage: React.FC = () => {
 
   return (
     <>
-      <DataTitle>Employees</DataTitle>
+      <DataTitle isIconArrow>Employees</DataTitle>
 
       {isDesktop ? (
         <EmployeesTable data={allEmployees} />

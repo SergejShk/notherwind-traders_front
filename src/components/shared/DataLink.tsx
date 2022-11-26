@@ -18,7 +18,7 @@ const DataLink: React.FC<IProps> = ({ children, linkTo }) => {
   const location = useLocation();
 
   return (
-    <LinkData to={linkTo} state={{ form: location }}>
+    <LinkData to={linkTo} state={{ from: location }}>
       {children}
     </LinkData>
   );

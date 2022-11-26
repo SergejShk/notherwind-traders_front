@@ -26,7 +26,7 @@ const CustomersPage: React.FC = () => {
 
   return (
     <>
-      <DataTitle>Customers</DataTitle>
+      <DataTitle isIconArrow>Customers</DataTitle>
 
       {isDesktop ? (
         <CustomersTable data={allCustomers} />

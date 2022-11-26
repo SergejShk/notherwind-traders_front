@@ -26,7 +26,7 @@ const ProductsPage: React.FC = () => {
 
   return (
     <>
-      <DataTitle>Products</DataTitle>
+      <DataTitle isIconArrow>Products</DataTitle>
 
       {isDesktop ? (
         <ProductsTable data={allProducts} />
