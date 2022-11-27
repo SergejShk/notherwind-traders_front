@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import DataLink from "./DataLink";
 
 const InfoBox = styled.div`
   display: flex;
@@ -32,7 +33,7 @@ const InfoItemName = styled.p`
 const InfoItemData = styled.p``;
 
 interface IProps {
-  data: {};
+  data: any;
 }
 
 const DataInfoList: React.FC<IProps> = ({ data }) => {
@@ -56,13 +57,35 @@ const DataInfoList: React.FC<IProps> = ({ data }) => {
   const splitCamelCaseStr = (str: string) =>
     str.replace(/([a-z](?=[A-Z]))/g, "$1 ");
 
+  const getLink = (link: string) => {
+    const id = data[link + "ID"];
+    const result = `/${link.toLowerCase()}s/${id}`;
+
+    if (!Object.keys(data).includes(link + "ID"))
+      console.log(Object.keys(data));
+    return result;
+  };
+
   return (
     <InfoBox>
       <InfoList>
         {firstList.map((el, idx) => (
           <InfoItem key={idx}>
-            <InfoItemName>{splitCamelCaseStr(el[0])}</InfoItemName>
-            <InfoItemData>{el[1]}</InfoItemData>
+            {el[0] === "Supplier" ? (
+              <>
+                <InfoItemName>{splitCamelCaseStr(el[0])}</InfoItemName>
+                <InfoItemData>
+                  <DataLink linkTo={getLink(el[0])}>
+                    {splitCamelCaseStr(el[1])}
+                  </DataLink>
+                </InfoItemData>
+              </>
+            ) : (
+              <>
+                <InfoItemName>{splitCamelCaseStr(el[0])}</InfoItemName>
+                <InfoItemData>{el[1]}</InfoItemData>
+              </>
+            )}
           </InfoItem>
         ))}
       </InfoList>

@@ -26,8 +26,6 @@ const Button = styled(Link)`
 const BtnGoBack: React.FC = () => {
   const { state } = useLocation();
 
-  console.log(state);
-
   return (
     <Box>
       <Button to={state?.from ?? "/"}>Go back</Button>
