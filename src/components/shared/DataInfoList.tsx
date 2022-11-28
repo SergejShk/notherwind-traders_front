@@ -65,22 +65,24 @@ const DataInfoList: React.FC<IProps> = ({ data }) => {
       console.log(Object.keys(data));
     return result;
   };
-
+  console.log(data);
   return (
     <InfoBox>
       <InfoList>
         {firstList.map((el, idx) => (
           <InfoItem key={idx}>
-            {el[0] === "Supplier" ? (
+            {el[0] === "Supplier" && (
               <>
                 <InfoItemName>{splitCamelCaseStr(el[0])}</InfoItemName>
                 <InfoItemData>
                   <DataLink linkTo={getLink(el[0])}>
-                    {splitCamelCaseStr(el[1])}
+                    {splitCamelCaseStr(el[0])}
                   </DataLink>
                 </InfoItemData>
               </>
-            ) : (
+            )}
+
+            {el[0] !== "Supplier" && (
               <>
                 <InfoItemName>{splitCamelCaseStr(el[0])}</InfoItemName>
                 <InfoItemData>{el[1]}</InfoItemData>
@@ -93,8 +95,23 @@ const DataInfoList: React.FC<IProps> = ({ data }) => {
       <InfoList>
         {secondList.map((el, idx) => (
           <InfoItem key={idx}>
-            <InfoItemName>{splitCamelCaseStr(el[0])}</InfoItemName>
-            <InfoItemData>{el[1]}</InfoItemData>
+            {el[0] === "ReportsTo" && (
+              <>
+                <InfoItemName>{splitCamelCaseStr(el[0])}</InfoItemName>
+                <InfoItemData>
+                  <DataLink linkTo={`/employees/${data.ReportsToID}`}>
+                    {el[1]}
+                  </DataLink>
+                </InfoItemData>
+              </>
+            )}
+
+            {el[0] !== "ReportsTo" && (
+              <>
+                <InfoItemName>{splitCamelCaseStr(el[0])}</InfoItemName>
+                <InfoItemData>{el[1]}</InfoItemData>
+              </>
+            )}
           </InfoItem>
         ))}
       </InfoList>
