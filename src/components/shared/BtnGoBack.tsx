@@ -4,8 +4,6 @@ import styled from "styled-components";
 const Box = styled.div`
   padding: 24px;
   background-color: #fff;
-  box-shadow: 0px 1px 1px rgb(0 0 0 / 0%), 0px 4px 4px rgb(0 0 0 / 6%),
-    1px 4px 6px rgb(0 0 0 / 0%);
   margin-top: 1px;
 `;
 

@@ -26,3 +26,13 @@ export type OrdersStore = {
   isLoading: boolean;
   error: string;
 };
+
+export type OrderProductsType = {
+  Discount: string;
+  OrderDetailsID: number;
+  OrderID: string;
+  ProductID: string;
+  Quantity: string;
+  UnitPrice: string;
+  ProductName: string;
+};

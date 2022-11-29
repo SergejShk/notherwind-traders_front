@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import DataLink from "./DataLink";
 
@@ -37,9 +38,14 @@ interface IProps {
 }
 
 const DataInfoList: React.FC<IProps> = ({ data }) => {
-  const filteredData = Object.entries(data).filter(
+  const { pathname } = useLocation();
+
+  let filteredData = Object.entries(data).filter(
     (entry) => !entry.includes("") && !entry[0].includes("ID")
   );
+
+  if (pathname.includes("/orders/"))
+    filteredData = [Object.entries(data)[1], ...filteredData];
 
   let firstList: any[] = [];
   let secondList: any[] = [];
@@ -53,7 +59,7 @@ const DataInfoList: React.FC<IProps> = ({ data }) => {
       secondList.push(entry);
     }
   });
-
+  console.log(data);
   const splitCamelCaseStr = (str: string) =>
     str.replace(/([a-z](?=[A-Z]))/g, "$1 ");
 
@@ -65,7 +71,7 @@ const DataInfoList: React.FC<IProps> = ({ data }) => {
       console.log(Object.keys(data));
     return result;
   };
-  console.log(data);
+
   return (
     <InfoBox>
       <InfoList>
@@ -76,13 +82,26 @@ const DataInfoList: React.FC<IProps> = ({ data }) => {
                 <InfoItemName>{splitCamelCaseStr(el[0])}</InfoItemName>
                 <InfoItemData>
                   <DataLink linkTo={getLink(el[0])}>
-                    {splitCamelCaseStr(el[0])}
+                    {splitCamelCaseStr(el[1])}
                   </DataLink>
                 </InfoItemData>
               </>
             )}
 
-            {el[0] !== "Supplier" && (
+            {el[0] === "CustomerID" && (
+              <>
+                <InfoItemName>
+                  {splitCamelCaseStr(el[0]).replace("ID", "Id")}
+                </InfoItemName>
+                <InfoItemData>
+                  <DataLink linkTo={`/customers/${el[1]}`}>
+                    {splitCamelCaseStr(el[1])}
+                  </DataLink>
+                </InfoItemData>
+              </>
+            )}
+
+            {el[0] !== "Supplier" && el[0] !== "CustomerID" && (
               <>
                 <InfoItemName>{splitCamelCaseStr(el[0])}</InfoItemName>
                 <InfoItemData>{el[1]}</InfoItemData>

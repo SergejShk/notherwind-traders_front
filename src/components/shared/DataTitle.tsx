@@ -6,11 +6,9 @@ const Box = styled.div`
   display: flex;
   align-items: center;
   background-color: #fff;
-  margin-bottom: 2px;
   padding: 0 16px;
-  box-shadow: 0px 1px 1px rgb(0 0 0 / 0%), 0px 4px 4px rgb(0 0 0 / 1%),
-    1px 4px 6px rgb(0 0 0 / 0%);
   border-radius: 4px 4px 0 0;
+  border: 1px solid #eff0f1;
 `;
 
 const Title = styled.h2`
