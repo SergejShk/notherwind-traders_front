@@ -1,4 +1,4 @@
-import { OrderType } from "../../types/ordersTypes";
+import { OrderCommonType } from "../../types/ordersTypes";
 import {
   CardContent,
   CardContentItem,
@@ -8,7 +8,7 @@ import {
 import DataLink from "../shared/DataLink";
 
 interface IProps {
-  data: OrderType[];
+  data: OrderCommonType[];
 }
 
 const OrdersCardsList: React.FC<IProps> = ({ data }) => {
@@ -26,17 +26,17 @@ const OrdersCardsList: React.FC<IProps> = ({ data }) => {
 
             <CardContentItem>
               <CardContentName>Price</CardContentName>
-              <CardContent>$</CardContent>
+              <CardContent>{order.TotalPrice}</CardContent>
             </CardContentItem>
 
             <CardContentItem>
               <CardContentName>Products</CardContentName>
-              <CardContent></CardContent>
+              <CardContent>{order.Products}</CardContent>
             </CardContentItem>
 
             <CardContentItem>
               <CardContentName>Quantity</CardContentName>
-              <CardContent></CardContent>
+              <CardContent>{order.Quantity}</CardContent>
             </CardContentItem>
 
             <CardContentItem>

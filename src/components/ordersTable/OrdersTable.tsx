@@ -1,4 +1,4 @@
-import { OrderType } from "../../types/ordersTypes";
+import { OrderCommonType } from "../../types/ordersTypes";
 import DataLink from "../shared/DataLink";
 import {
   TableBodyRow,
@@ -9,7 +9,7 @@ import {
 } from "../shared/DataTable";
 
 interface IProps {
-  data: OrderType[];
+  data: OrderCommonType[];
 }
 
 const OrdersTable: React.FC<IProps> = ({ data }) => {
@@ -35,9 +35,9 @@ const OrdersTable: React.FC<IProps> = ({ data }) => {
               <DataLink linkTo={order.OrderID}>{order.OrderID}</DataLink>
             </TableData>
 
-            <TableData></TableData>
-            <TableData></TableData>
-            <TableData></TableData>
+            <TableData>{order.TotalPrice}</TableData>
+            <TableData>{order.Products}</TableData>
+            <TableData>{order.Quantity}</TableData>
             <TableData>{order.OrderDate.split(" ")[0]}</TableData>
             <TableData>{order.ShipName}</TableData>
             <TableData>{order.ShipCity}</TableData>

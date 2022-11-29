@@ -15,14 +15,25 @@ export type OrderType = {
   ShipCountry: string;
 };
 
+export type OrderCommonType = {
+  OrderID: string;
+  TotalPrice: string;
+  Products: string;
+  Quantity: string;
+  OrderDate: string;
+  ShipName: string;
+  ShipCity: string;
+  ShipCountry: string;
+};
+
 export type AllOrdersType = {
   total: number | null;
-  data: OrderType[];
+  data: OrderCommonType[];
 };
 
 export type OrdersStore = {
   total: number | null;
-  data: OrderType[];
+  data: OrderCommonType[];
   isLoading: boolean;
   error: string;
 };
