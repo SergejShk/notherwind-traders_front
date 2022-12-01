@@ -22,3 +22,11 @@ export type ProductsStore = {
   isLoading: boolean;
   error: string;
 };
+
+export type ProductsBySearchType = {
+  ProductID: string;
+  ProductName: string;
+  QuantityPerUnit: string;
+  UnitPrice: string;
+  UnitsInStock: string;
+};

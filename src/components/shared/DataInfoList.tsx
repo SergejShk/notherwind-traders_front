@@ -59,7 +59,7 @@ const DataInfoList: React.FC<IProps> = ({ data }) => {
       secondList.push(entry);
     }
   });
-  console.log(data);
+  
   const splitCamelCaseStr = (str: string) =>
     str.replace(/([a-z](?=[A-Z]))/g, "$1 ");
 

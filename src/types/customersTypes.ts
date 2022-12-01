@@ -23,3 +23,11 @@ export type CustomersStore = {
   isLoading: boolean;
   error: string;
 };
+
+export type CustomersBySearchType = {
+  CompanyName: string;
+  ContactName: string;
+  ContactTitle: string;
+  CustomerID: string;
+  Phone: string;
+};
