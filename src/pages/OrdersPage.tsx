@@ -10,6 +10,7 @@ const OrdersPage: React.FC = () => {
   const [page, setPage] = useState(1);
   const [allOrders, setAllOrders] = useState([]);
   const [countOrders, setCountOrders] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 
   useEffect(() => {
@@ -18,19 +19,25 @@ const OrdersPage: React.FC = () => {
         setAllOrders(res.data);
         setCountOrders(res.total);
       })
-      .catch(console.log);
+      .catch(console.log)
+      .finally(() => setIsLoading(false));
   }, [page]);
 
   if (allOrders.length < 0) return null;
 
   return (
     <>
-      <DataTitle isIconArrow>Orders</DataTitle>
+      {isLoading && <p>Loading orders...</p>}
+      {!isLoading && (
+        <>
+          <DataTitle isIconArrow>Orders</DataTitle>
 
-      {!isDesktop && <OrdersCardsList data={allOrders} />}
-      {isDesktop && <OrdersTable data={allOrders} />}
+          {!isDesktop && <OrdersCardsList data={allOrders} />}
+          {isDesktop && <OrdersTable data={allOrders} />}
 
-      <Pagination countData={countOrders} setPage={setPage} />
+          <Pagination countData={countOrders} setPage={setPage} />
+        </>
+      )}
     </>
   );
 };

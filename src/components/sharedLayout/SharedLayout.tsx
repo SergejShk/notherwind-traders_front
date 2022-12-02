@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import AppBar from "../appBar/AppBar";
 import Header from "../header/Header";
@@ -23,7 +23,9 @@ const SharedLayout: React.FC = () => {
         <Header toggleAppBar={toggleAppBar} />
 
         <WrapperContent>
-          <Outlet />
+          <Suspense fallback={<></>}>
+            <Outlet />
+          </Suspense>
         </WrapperContent>
       </Wrapper>
     </MainWrapper>

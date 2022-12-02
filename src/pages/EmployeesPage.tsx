@@ -10,6 +10,7 @@ const EmployeesPage: React.FC = () => {
   const [page, setPage] = useState(1);
   const [allEmployees, setAllEmployees] = useState([]);
   const [countEmployees, setCountEmployees] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 
   useEffect(() => {
@@ -18,19 +19,25 @@ const EmployeesPage: React.FC = () => {
         setAllEmployees(res.data);
         setCountEmployees(res.total);
       })
-      .catch(console.log);
+      .catch(console.log)
+      .finally(() => setIsLoading(false));
   }, [page]);
 
   if (allEmployees.length < 0) return null;
 
   return (
     <>
-      <DataTitle isIconArrow>Employees</DataTitle>
+      {isLoading && <p>Loading employees...</p>}
+      {!isLoading && (
+        <>
+          <DataTitle isIconArrow>Employees</DataTitle>
 
-      {!isDesktop && <EmployeesCardsList data={allEmployees} />}
-      {isDesktop && <EmployeesTable data={allEmployees} />}
+          {!isDesktop && <EmployeesCardsList data={allEmployees} />}
+          {isDesktop && <EmployeesTable data={allEmployees} />}
 
-      <Pagination countData={countEmployees} setPage={setPage} />
+          <Pagination countData={countEmployees} setPage={setPage} />
+        </>
+      )}
     </>
   );
 };

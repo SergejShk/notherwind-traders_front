@@ -10,6 +10,7 @@ const CustomersPage: React.FC = () => {
   const [page, setPage] = useState(1);
   const [allCustomers, setAllCustomers] = useState([]);
   const [countCustomers, setCountCustomers] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 
   useEffect(() => {
@@ -18,19 +19,25 @@ const CustomersPage: React.FC = () => {
         setAllCustomers(res.data);
         setCountCustomers(res.total);
       })
-      .catch(console.log);
+      .catch(console.log)
+      .finally(() => setIsLoading(false));
   }, [page]);
 
   if (allCustomers.length < 0) return null;
 
   return (
     <>
-      <DataTitle isIconArrow>Customers</DataTitle>
+      {isLoading && <p>Loading customers...</p>}
+      {!isLoading && (
+        <>
+          <DataTitle isIconArrow>Customers</DataTitle>
 
-      {!isDesktop && <CustomersCardsList data={allCustomers} />}
-      {isDesktop && <CustomersTable data={allCustomers} />}
+          {!isDesktop && <CustomersCardsList data={allCustomers} />}
+          {isDesktop && <CustomersTable data={allCustomers} />}
 
-      <Pagination countData={countCustomers} setPage={setPage} />
+          <Pagination countData={countCustomers} setPage={setPage} />
+        </>
+      )}
     </>
   );
 };

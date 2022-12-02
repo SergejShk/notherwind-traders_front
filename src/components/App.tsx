@@ -1,18 +1,20 @@
+import { lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import CustomerInfoPage from "../pages/CustomerInfoPage";
 import CustomersPage from "../pages/CustomersPage";
 import DashboardPage from "../pages/DashboardPage";
-import EmployeesInfoPage from "../pages/EmployeesInfoPage";
-import EmployeesPage from "../pages/EmployeesPage";
-import HomePage from "../pages/HomePage";
-import OrderInfoPage from "../pages/OrderInfoPage";
-import OrdersPage from "../pages/OrdersPage";
-import ProductInfoPage from "../pages/ProductInfoPage";
-import ProductsPage from "../pages/ProductsPage";
-import SearchPage from "../pages/SearchPage";
-import SupplierInfoPage from "../pages/SupplierInfoPage";
-import SuppliersPage from "../pages/SuppliersPage";
 import SharedLayout from "./sharedLayout/SharedLayout";
+
+const HomePage = lazy(() => import("../pages/HomePage"));
+const SuppliersPage = lazy(() => import("../pages/SuppliersPage"));
+const SupplierInfoPage = lazy(() => import("../pages/SupplierInfoPage"));
+const ProductsPage = lazy(() => import("../pages/ProductsPage"));
+const ProductInfoPage = lazy(() => import("../pages/ProductInfoPage"));
+const OrdersPage = lazy(() => import("../pages/OrdersPage"));
+const OrderInfoPage = lazy(() => import("../pages/OrderInfoPage"));
+const EmployeesPage = lazy(() => import("../pages/EmployeesPage"));
+const EmployeesInfoPage = lazy(() => import("../pages/EmployeesInfoPage"));
+const SearchPage = lazy(() => import("../pages/SearchPage"));
 
 const App: React.FC = () => {
   return (
