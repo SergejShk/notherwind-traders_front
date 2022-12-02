@@ -15,7 +15,7 @@ const CustomerInfoPage: React.FC = () => {
       id: customerId!,
     })
       .then((res) => {
-        setData(res);
+        setData(res.data);
       })
       .catch(console.log);
   }, [customerId]);

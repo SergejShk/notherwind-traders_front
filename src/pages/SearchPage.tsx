@@ -28,6 +28,7 @@ const SearchPage: React.FC = () => {
       })
         .then((res) => {
           setData(res.data);
+          console.log(res.stats.sql);
         })
         .catch(console.log);
   }, [category]);
@@ -42,6 +43,7 @@ const SearchPage: React.FC = () => {
       })
         .then((res) => {
           setData(res.data);
+          console.log(res.stats.sql);
         })
         .catch(console.log);
   };

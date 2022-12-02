@@ -20,8 +20,8 @@ const OrderInfoPage: React.FC = () => {
       id: orderId!,
     })
       .then((res) => {
-        setOrderProducts(res.orderProducts);
-        setData(res.data);
+        setOrderProducts(res.data.orderProducts);
+        setData(res.data.data);
       })
       .catch(console.log);
   }, [orderId]);

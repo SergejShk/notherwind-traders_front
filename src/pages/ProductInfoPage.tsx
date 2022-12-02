@@ -15,7 +15,7 @@ const ProductInfoPage: React.FC = () => {
       id: productId!,
     })
       .then((res) => {
-        setData(res);
+        setData(res.data);
       })
       .catch(console.log);
   }, [productId]);

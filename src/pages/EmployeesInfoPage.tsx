@@ -15,7 +15,7 @@ const EmployeesInfoPage: React.FC = () => {
       id: employeeId!,
     })
       .then((res) => {
-        setData(res);
+        setData(res.data);
       })
       .catch(console.log);
   }, [employeeId]);

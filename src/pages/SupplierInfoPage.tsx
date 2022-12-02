@@ -15,7 +15,7 @@ const SupplierInfoPage: React.FC = () => {
       id: supplierId!,
     })
       .then((res) => {
-        setData(res);
+        setData(res.data);
       })
       .catch(console.log);
   }, [supplierId]);

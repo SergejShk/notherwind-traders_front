@@ -13,8 +13,6 @@ interface IProps {
 }
 
 const SearchResultsList: React.FC<IProps> = ({ data }) => {
-  console.log(data);
-
   return (
     <>
       <ResultsTitle>Search results</ResultsTitle>
