@@ -4,23 +4,22 @@ import ProductsCardsList from "../components/productsCardsList/ProductsCardsList
 import ProductsTable from "../components/productsTable/ProductsTable";
 import DataTitle from "../components/shared/DataTitle";
 import Pagination from "../components/shared/pagination/Pagination";
-import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
-import { getAllProductsThunk } from "../redux/products/productsOperations";
-import {
-  getAllProductsStore,
-  getCountProductsStore,
-} from "../redux/products/productsSelectors";
+import { getAllDataByCategory } from "../services/dataApi";
 
 const ProductsPage: React.FC = () => {
   const [page, setPage] = useState(1);
-  const dispatch = useAppDispatch();
-  const allProducts = useAppSelector(getAllProductsStore);
-  const countProducts = useAppSelector(getCountProductsStore);
+  const [allProducts, setAllProducts] = useState([]);
+  const [countProducts, setCountProducts] = useState(0);
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 
   useEffect(() => {
-    dispatch(getAllProductsThunk({ category: "products", page }));
-  }, [dispatch, page]);
+    getAllDataByCategory({ category: "products", page })
+      .then((res) => {
+        setAllProducts(res.data);
+        setCountProducts(res.total);
+      })
+      .catch(console.log);
+  }, [page]);
 
   if (allProducts.length < 0) return null;
 
@@ -28,11 +27,8 @@ const ProductsPage: React.FC = () => {
     <>
       <DataTitle isIconArrow>Products</DataTitle>
 
-      {isDesktop ? (
-        <ProductsTable data={allProducts} />
-      ) : (
-        <ProductsCardsList data={allProducts} />
-      )}
+      {!isDesktop && <ProductsCardsList data={allProducts} />}
+      {isDesktop && <ProductsTable data={allProducts} />}
 
       <Pagination countData={countProducts} setPage={setPage} />
     </>

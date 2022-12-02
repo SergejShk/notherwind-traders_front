@@ -4,23 +4,22 @@ import CustomersCardsList from "../components/customersCardsList/CustomersCardsL
 import CustomersTable from "../components/customersTable/CustomersTable";
 import DataTitle from "../components/shared/DataTitle";
 import Pagination from "../components/shared/pagination/Pagination";
-import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
-import { getAllCustomersThunk } from "../redux/customers/customersOperations";
-import {
-  getAllCustomersStore,
-  getCountCustomersStore,
-} from "../redux/customers/customersSelectors";
+import { getAllDataByCategory } from "../services/dataApi";
 
 const CustomersPage: React.FC = () => {
   const [page, setPage] = useState(1);
-  const dispatch = useAppDispatch();
-  const allCustomers = useAppSelector(getAllCustomersStore);
-  const countCustomers = useAppSelector(getCountCustomersStore);
+  const [allCustomers, setAllCustomers] = useState([]);
+  const [countCustomers, setCountCustomers] = useState(0);
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 
   useEffect(() => {
-    dispatch(getAllCustomersThunk({ category: "customers", page }));
-  }, [dispatch, page]);
+    getAllDataByCategory({ category: "customers", page })
+      .then((res) => {
+        setAllCustomers(res.data);
+        setCountCustomers(res.total);
+      })
+      .catch(console.log);
+  }, [page]);
 
   if (allCustomers.length < 0) return null;
 
@@ -28,11 +27,8 @@ const CustomersPage: React.FC = () => {
     <>
       <DataTitle isIconArrow>Customers</DataTitle>
 
-      {isDesktop ? (
-        <CustomersTable data={allCustomers} />
-      ) : (
-        <CustomersCardsList data={allCustomers} />
-      )}
+      {!isDesktop && <CustomersCardsList data={allCustomers} />}
+      {isDesktop && <CustomersTable data={allCustomers} />}
 
       <Pagination countData={countCustomers} setPage={setPage} />
     </>

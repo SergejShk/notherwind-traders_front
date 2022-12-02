@@ -4,23 +4,23 @@ import DataTitle from "../components/shared/DataTitle";
 import Pagination from "../components/shared/pagination/Pagination";
 import SuppliersCardsList from "../components/suppliersCardsList/SuppliersCardsList";
 import SuppliersTable from "../components/suppliersTable/SuppliersTable";
-import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
-import { getAllSuppliersThunk } from "../redux/suppliers/suppliersOperations";
-import {
-  getAllSuppliersStore,
-  getCountSuppliersStore,
-} from "../redux/suppliers/suppliersSelectors";
+import { getAllDataByCategory } from "../services/dataApi";
 
 const SuppliersPage: React.FC = () => {
   const [page, setPage] = useState(1);
-  const dispatch = useAppDispatch();
-  const allSuppliers = useAppSelector(getAllSuppliersStore);
-  const countSuppliers = useAppSelector(getCountSuppliersStore);
+  const [allSuppliers, setAllSuppliers] = useState([]);
+  const [countSuppliers, setCountSuppliers] = useState(0);
+
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 
   useEffect(() => {
-    dispatch(getAllSuppliersThunk({ category: "suppliers", page }));
-  }, [dispatch, page]);
+    getAllDataByCategory({ category: "suppliers", page })
+      .then((res) => {
+        setAllSuppliers(res.data);
+        setCountSuppliers(res.total);
+      })
+      .catch(console.log);
+  }, [page]);
 
   if (allSuppliers.length < 0) return null;
 
@@ -28,11 +28,8 @@ const SuppliersPage: React.FC = () => {
     <>
       <DataTitle isIconArrow>Suppliers</DataTitle>
 
-      {isDesktop ? (
-        <SuppliersTable data={allSuppliers} />
-      ) : (
-        <SuppliersCardsList data={allSuppliers} />
-      )}
+      {!isDesktop && <SuppliersCardsList data={allSuppliers} />}
+      {isDesktop && <SuppliersTable data={allSuppliers} />}
 
       <Pagination countData={countSuppliers} setPage={setPage} />
     </>

@@ -4,23 +4,22 @@ import EmployeesCardsList from "../components/employeesCardsList/EmployeesCardsL
 import EmployeesTable from "../components/employeesTable/EmployeesTable";
 import DataTitle from "../components/shared/DataTitle";
 import Pagination from "../components/shared/pagination/Pagination";
-import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
-import { getAllEmployeesThunk } from "../redux/employees/employeesOperations";
-import {
-  getAllEmployeesStore,
-  getCountEmployeesStore,
-} from "../redux/employees/employeesSelectors";
+import { getAllDataByCategory } from "../services/dataApi";
 
 const EmployeesPage: React.FC = () => {
   const [page, setPage] = useState(1);
-  const dispatch = useAppDispatch();
-  const allEmployees = useAppSelector(getAllEmployeesStore);
-  const countEmployees = useAppSelector(getCountEmployeesStore);
+  const [allEmployees, setAllEmployees] = useState([]);
+  const [countEmployees, setCountEmployees] = useState(0);
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 
   useEffect(() => {
-    dispatch(getAllEmployeesThunk({ category: "employees", page }));
-  }, [dispatch, page]);
+    getAllDataByCategory({ category: "employees", page })
+      .then((res) => {
+        setAllEmployees(res.data);
+        setCountEmployees(res.total);
+      })
+      .catch(console.log);
+  }, [page]);
 
   if (allEmployees.length < 0) return null;
 
@@ -28,11 +27,8 @@ const EmployeesPage: React.FC = () => {
     <>
       <DataTitle isIconArrow>Employees</DataTitle>
 
-      {isDesktop ? (
-        <EmployeesTable data={allEmployees} />
-      ) : (
-        <EmployeesCardsList data={allEmployees} />
-      )}
+      {!isDesktop && <EmployeesCardsList data={allEmployees} />}
+      {isDesktop && <EmployeesTable data={allEmployees} />}
 
       <Pagination countData={countEmployees} setPage={setPage} />
     </>
