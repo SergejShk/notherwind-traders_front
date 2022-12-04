@@ -4,10 +4,13 @@ import BtnGoBack from "../../shared/btnGoBack/BtnGoBack";
 import DataInfoList from "../../shared/dataInfoList/DataInfoList";
 import DataTitle from "../../shared/dataTitle/DataTitle";
 import { getDataInfoById } from "../../../api/dataApi";
+import { useAppDispatch } from "../../../hooks/reduxHooks";
+import { setStats } from "../../../store/reducers/statsSlice";
 
 const ProductInfoPage: React.FC = () => {
   const { productId } = useParams();
   const [data, setData] = useState({});
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     getDataInfoById({
@@ -16,9 +19,10 @@ const ProductInfoPage: React.FC = () => {
     })
       .then((res) => {
         setData(res.data);
+        dispatch(setStats({ metrics: res.metrics, stats: res.stats }));
       })
       .catch(console.log);
-  }, [productId]);
+  }, [dispatch, productId]);
 
   if (!data) return <p>No such product</p>;
   return (

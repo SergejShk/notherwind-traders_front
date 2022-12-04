@@ -4,6 +4,8 @@ import styled from "styled-components";
 import SearchForm from "./searchForm/SearchForm";
 import SearchResultsList from "./searchResultsList/SearchResultsList";
 import { getDataBySearch } from "../../../api/dataApi";
+import { useAppDispatch } from "../../../hooks/reduxHooks";
+import { setStats } from "../../../store/reducers/statsSlice";
 
 const Box = styled.div`
   background-color: #fff;
@@ -19,6 +21,7 @@ const SearchPage: React.FC = () => {
   const [search, setSearch] = useState(query);
   const [category, setCategory] = useState(searchCategory || "Products");
   const [data, setData] = useState([]);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     search &&
@@ -28,10 +31,10 @@ const SearchPage: React.FC = () => {
       })
         .then((res) => {
           setData(res.data);
-          console.log(res.stats.sql);
+          dispatch(setStats({ metrics: res.metrics, stats: res.stats }));
         })
         .catch(console.log);
-  }, [category]);
+  }, [dispatch, category]);
 
   const onFormSubmit = () => {
     setSearchParams(search !== "" ? { search, category } : {});
@@ -43,7 +46,7 @@ const SearchPage: React.FC = () => {
       })
         .then((res) => {
           setData(res.data);
-          console.log(res.stats.sql);
+          dispatch(setStats({ metrics: res.metrics, stats: res.stats }));
         })
         .catch(console.log);
   };

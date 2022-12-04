@@ -1,16 +1,8 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import suppliersReducer from "./suppliers/suppliersSlice";
-import productsReducer from "./products/productsSlice";
-import ordersReducer from "./orders/ordersSlice";
-import employeesReducer from "./employees/employeesSlice";
-import customersReducer from "./customers/customersSlice";
+import statsReducer from "./reducers/statsSlice";
 
 const reducers = combineReducers({
-  suppliers: suppliersReducer,
-  products: productsReducer,
-  orders: ordersReducer,
-  employees: employeesReducer,
-  customers: customersReducer,
+  stats: statsReducer,
 });
 
 const store = configureStore({

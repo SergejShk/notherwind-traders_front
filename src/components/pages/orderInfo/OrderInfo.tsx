@@ -7,12 +7,15 @@ import BtnGoBack from "../../shared/btnGoBack/BtnGoBack";
 import DataInfoList from "../../shared/dataInfoList/DataInfoList";
 import DataTitle from "../../shared/dataTitle/DataTitle";
 import { getDataInfoById } from "../../../api/dataApi";
+import { useAppDispatch } from "../../../hooks/reduxHooks";
+import { setStats } from "../../../store/reducers/statsSlice";
 
 const OrderInfoPage: React.FC = () => {
   const { orderId } = useParams();
   const [data, setData] = useState({});
   const [orderProducts, setOrderProducts] = useState([]);
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     getDataInfoById({
@@ -22,9 +25,10 @@ const OrderInfoPage: React.FC = () => {
       .then((res) => {
         setOrderProducts(res.data.orderProducts);
         setData(res.data.data);
+        dispatch(setStats({ metrics: res.metrics, stats: res.stats }));
       })
       .catch(console.log);
-  }, [orderId]);
+  }, [dispatch, orderId]);
 
   if (!data) return <p>No such order</p>;
   return (
