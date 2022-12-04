@@ -10,6 +10,7 @@ import { setStats } from "../../../store/reducers/statsSlice";
 const EmployeesInfoPage: React.FC = () => {
   const { employeeId } = useParams();
   const [data, setData] = useState({});
+  const [error, setError] = useState("");
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -21,10 +22,10 @@ const EmployeesInfoPage: React.FC = () => {
         setData(res.data);
         dispatch(setStats({ metrics: res.metrics, stats: res.stats }));
       })
-      .catch(console.log);
+      .catch(setError);
   }, [dispatch, employeeId]);
 
-  if (!data) return <p>No such employee</p>;
+  if (error) return <p>No such employee</p>;
   return (
     <>
       {Object.keys(data).length > 0 && (

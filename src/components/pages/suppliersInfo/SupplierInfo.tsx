@@ -10,6 +10,7 @@ import { setStats } from "../../../store/reducers/statsSlice";
 const SupplierInfoPage: React.FC = () => {
   const { supplierId } = useParams();
   const [data, setData] = useState({});
+  const [error, setError] = useState("");
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -21,10 +22,10 @@ const SupplierInfoPage: React.FC = () => {
         setData(res.data);
         dispatch(setStats({ metrics: res.metrics, stats: res.stats }));
       })
-      .catch(console.log);
+      .catch(setError);
   }, [dispatch, supplierId]);
 
-  if (!data) return <p>No such supplier</p>;
+  if (error) return <p>No such supplier</p>;
   return (
     <>
       {Object.keys(data).length > 0 && (

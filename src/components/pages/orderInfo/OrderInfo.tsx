@@ -15,6 +15,7 @@ const OrderInfoPage: React.FC = () => {
   const [data, setData] = useState({});
   const [orderProducts, setOrderProducts] = useState([]);
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
+  const [error, setError] = useState("");
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -27,10 +28,10 @@ const OrderInfoPage: React.FC = () => {
         setData(res.data.data);
         dispatch(setStats({ metrics: res.metrics, stats: res.stats }));
       })
-      .catch(console.log);
+      .catch(setError);
   }, [dispatch, orderId]);
 
-  if (!data) return <p>No such order</p>;
+  if (error) return <p>No such order</p>;
   return (
     <>
       {Object.keys(data).length > 0 && (

@@ -10,6 +10,7 @@ import { setStats } from "../../../store/reducers/statsSlice";
 const ProductInfoPage: React.FC = () => {
   const { productId } = useParams();
   const [data, setData] = useState({});
+  const [error, setError] = useState("");
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -21,10 +22,10 @@ const ProductInfoPage: React.FC = () => {
         setData(res.data);
         dispatch(setStats({ metrics: res.metrics, stats: res.stats }));
       })
-      .catch(console.log);
+      .catch(setError);
   }, [dispatch, productId]);
 
-  if (!data) return <p>No such product</p>;
+  if (error) return <p>No such product</p>;
   return (
     <>
       {Object.keys(data).length > 0 && (
