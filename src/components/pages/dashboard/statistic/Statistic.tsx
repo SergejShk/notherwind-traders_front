@@ -1,3 +1,4 @@
+import { useAppSelector } from "../../../../hooks/reduxHooks";
 import {
   AccentLog,
   BlockStat,
@@ -9,6 +10,9 @@ import {
 } from "./Statistic.style";
 
 const Statistic: React.FC = () => {
+  const data = useAppSelector((store) => store.stats);
+  const { dbQuery, queryCount, queryTypes, resultCount } = data;
+
   return (
     <>
       <WrapperStat>
@@ -20,21 +24,25 @@ const Statistic: React.FC = () => {
 
         <BlockStat>
           <NameBlock>SQL Metrics</NameBlock>
-          <Stat>Query count: </Stat>
-          <Stat>Results count: </Stat>
-          <Stat># SELECT: </Stat>
-          <Stat># SELECT WHERE: </Stat>
-          <Stat># SELECT LEFT JOIN: </Stat>
+          <Stat>Query count: {queryCount}</Stat>
+          <Stat>Results count: {resultCount}</Stat>
+          <Stat># SELECT: {queryTypes.select}</Stat>
+          <Stat># SELECT WHERE: {queryTypes.selectWhere}</Stat>
+          <Stat># SELECT LEFT JOIN: {queryTypes.selectWithJoin}</Stat>
         </BlockStat>
       </WrapperStat>
 
       <NameBlock>Activity log</NameBlock>
       <SmallText>Explore the app and see metrics here</SmallText>
-      <AccentLog>
-        2022-12-03T09:14:50.155Z,
-        primary-cf5c58b0-e2c3-46e2-b128-37eecde77a08.db3, 0.14231199771165848ms
-      </AccentLog>
-      <Log>SELECT COUNT(1) as total FROM Supplier</Log>
+
+      {dbQuery.map((query, idx) => (
+        <div key={idx}>
+          <AccentLog>
+            {query.date}, {query.duration}
+          </AccentLog>
+          <Log>{query.sql}</Log>
+        </div>
+      ))}
     </>
   );
 };
