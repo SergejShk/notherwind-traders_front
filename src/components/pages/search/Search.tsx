@@ -33,7 +33,10 @@ const SearchPage: React.FC = () => {
           setData(res.data);
           dispatch(setStats({ metrics: res.metrics, stats: res.stats }));
         })
-        .catch(console.log);
+        .catch((err) => {
+          setData([]);
+          console.log(err);
+        });
   }, [dispatch, category]);
 
   const onFormSubmit = () => {
@@ -60,7 +63,7 @@ const SearchPage: React.FC = () => {
       setSearchParams(search !== "" ? { search, category: value } : {});
     }
   };
-  
+
   return (
     <Box>
       <SearchForm
