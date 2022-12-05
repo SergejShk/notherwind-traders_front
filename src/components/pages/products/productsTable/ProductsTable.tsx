@@ -7,6 +7,7 @@ import {
   TableHeader,
   TableStyled,
 } from "../../../shared/dataTable/DataTable.style";
+import { productsTableHeaders } from "./productsTableHelpers";
 
 interface IProps {
   data: ProductType[];
@@ -17,11 +18,9 @@ const ProductsTable: React.FC<IProps> = ({ data }) => {
     <TableStyled>
       <TableHead>
         <tr>
-          <TableHeader>Name</TableHeader>
-          <TableHeader>Qt per unit</TableHeader>
-          <TableHeader>Price</TableHeader>
-          <TableHeader>Stock</TableHeader>
-          <TableHeader>Orders</TableHeader>
+          {productsTableHeaders.map((header, idx) => (
+            <TableHeader key={idx}>{header}</TableHeader>
+          ))}
         </tr>
       </TableHead>
 

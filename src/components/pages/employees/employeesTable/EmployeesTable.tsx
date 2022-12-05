@@ -8,6 +8,7 @@ import {
 import { EmployeeType } from "../../../../types/employeesTypes";
 import Initials from "../../../shared/initials/Initials";
 import DataLink from "../../../shared/dataLink/DataLink";
+import { employeesTableHeaders } from "./employeesTableHelpers";
 
 interface IProps {
   data: EmployeeType[];
@@ -18,12 +19,9 @@ const EmployeesTable: React.FC<IProps> = ({ data }) => {
     <TableStyled>
       <TableHead>
         <tr>
-          <TableHeader></TableHeader>
-          <TableHeader>Name</TableHeader>
-          <TableHeader>Title</TableHeader>
-          <TableHeader>City</TableHeader>
-          <TableHeader>Phone</TableHeader>
-          <TableHeader>Country</TableHeader>
+          {employeesTableHeaders.map((header, idx) => (
+            <TableHeader key={idx}>{header}</TableHeader>
+          ))}
         </tr>
       </TableHead>
 
