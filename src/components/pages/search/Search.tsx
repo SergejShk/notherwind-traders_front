@@ -60,7 +60,7 @@ const SearchPage: React.FC = () => {
       setSearchParams(search !== "" ? { search, category: value } : {});
     }
   };
-
+  
   return (
     <Box>
       <SearchForm

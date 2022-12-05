@@ -1,3 +1,4 @@
+import React from "react";
 import { CustomersBySearchType } from "../../../../types/customersTypes";
 import { ProductsBySearchType } from "../../../../types/productsTypes";
 import DataLink from "../../../shared/dataLink/DataLink";
@@ -12,7 +13,7 @@ interface IProps {
   data: ProductsBySearchType[] | CustomersBySearchType[];
 }
 
-const SearchResultsList: React.FC<IProps> = ({ data }) => {
+const SearchResultsList: React.FC<IProps> = React.memo(({ data }) => {
   return (
     <>
       <ResultsTitle>Search results</ResultsTitle>
@@ -53,6 +54,6 @@ const SearchResultsList: React.FC<IProps> = ({ data }) => {
       )}
     </>
   );
-};
+});
 
 export default SearchResultsList;
