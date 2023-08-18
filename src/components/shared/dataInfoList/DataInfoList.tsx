@@ -47,6 +47,8 @@ const DataInfoList: React.FC<IProps> = ({ data }) => {
     return result;
   };
 
+  console.log('data', data)
+
   return (
     <InfoBox>
       <InfoList>
@@ -93,7 +95,7 @@ const DataInfoList: React.FC<IProps> = ({ data }) => {
               <>
                 <InfoItemName>{splitCamelCaseStr(el[0])}</InfoItemName>
                 <p>
-                  <DataLink linkTo={`/employees/${data.ReportsToID}`}>
+                  <DataLink linkTo={`/employees/${data.ReportsTo}`}>
                     {el[1]}
                   </DataLink>
                 </p>
