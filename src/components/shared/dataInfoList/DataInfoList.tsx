@@ -47,8 +47,6 @@ const DataInfoList: React.FC<IProps> = ({ data }) => {
     return result;
   };
 
-  console.log('data', data)
-
   return (
     <InfoBox>
       <InfoList>
