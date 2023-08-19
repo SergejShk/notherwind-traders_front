@@ -1,7 +1,8 @@
 import { lazy } from "react";
 
 const Dashboard = lazy(() => import("../pages/dashboard/Dashboard"));
-const Suppliers = lazy(() => import("../pages/suppliers/Suppliers"));
+// const Suppliers = lazy(() => import("../pages/suppliers/Suppliers"));
+const Suppliers = lazy(() => import("../pages/suppliers-new/Suppliers"));
 const SupplierInfo = lazy(() => import("../pages/suppliersInfo/SupplierInfo"));
 const Products = lazy(() => import("../pages/products/Products"));
 const ProductInfo = lazy(() => import("../pages/productsInfo/ProductInfo"));
@@ -18,6 +19,10 @@ export const routes = [
     path: "dashboard",
     element: <Dashboard />,
   },
+  // {
+  //   path: "suppliers",
+  //   element: <Suppliers />,
+  // },
   {
     path: "suppliers",
     element: <Suppliers />,
